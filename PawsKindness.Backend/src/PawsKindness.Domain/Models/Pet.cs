@@ -10,7 +10,7 @@ public class Pet
 
     public string Name { get; private set; } = string.Empty;
 
-    public string Specie { get; private set; } = string.Empty;
+    public string Species { get; private set; } = string.Empty;
 
     public string Description { get; private set; } = string.Empty;
 
