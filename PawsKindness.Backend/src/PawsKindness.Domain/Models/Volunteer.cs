@@ -2,38 +2,50 @@
 
 public class Volunteer
 {
-    public Guid Id { get; set; }
+    private readonly List<SocialNetwork> _socialNetworks = [];
 
-    public string Surname { get; set; } = string.Empty;
+    private readonly List<Requisite> _requisites = [];
 
-    public string Name { get; set; } = string.Empty;
+    private readonly List<Pet> _pets = [];
 
-    public string MiddleName { get; set; } = string.Empty;
+    public Guid Id { get; private set; }
 
-    public string Description { get; set; } = string.Empty;
+    public string Surname { get; private set; } = string.Empty;
 
-    public int YearsExperience { get; set; }
+    public string Name { get; private set; } = string.Empty;
 
-    public int NumberPetsFoundAHome { get; set; }
+    public string MiddleName { get; private set; } = string.Empty;
 
-    public int NumberPetsLookingForAHome { get; set; }
+    public string Description { get; private set; } = string.Empty;
 
-    public int NumberPersNeedHelp { get; set; }
+    public int YearsExperience { get; private set; }
 
-    public string PhoneNumber { get; set; } = string.Empty;
+    public int NumberPetsFoundAHome { get; private set; }
 
-    public List<SocialNetwork> SocialNetworks { get; set; } = [];
+    public int NumberPetsLookingForAHome { get; private set; }
 
-    public List<Requisite> Requisites { get; set; } = [];
+    public int NumberPersNeedHelp { get; private set; }
 
-    public List<Pet> Pets { get; set; } = []; 
-}
+    public string PhoneNumber { get; private set; } = string.Empty;
 
-public class SocialNetwork
-{
-    public Guid Id { get; set; }
+    public IReadOnlyList<SocialNetwork> SocialNetworks => _socialNetworks;
 
-    public string Url { get; set; } = string.Empty;
+    public IReadOnlyList<Requisite> Requisites => _requisites;
 
-    public string Name { get; set; } = string.Empty;
+    public IReadOnlyList<Pet> Pets => _pets; 
+
+    public void AddSocialNetWork(SocialNetwork socialNetwork)
+    {
+        _socialNetworks.Add(socialNetwork);
+    }
+
+    public void AddRequisite(Requisite requisite)
+    {
+        _requisites.Add(requisite);
+    }
+
+    public void AddPet(Pet pet)
+    {
+        _pets.Add(pet);
+    }
 }
