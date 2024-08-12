@@ -4,37 +4,44 @@ namespace PawsKindness.Domain.Models;
 
 public class Pet
 {
-    public Guid Id { get; set; }
+    private readonly List<Requisite> _requisites = [];
 
-    public string Name { get; set; } = string.Empty;
+    public Guid Id { get; private set; }
 
-    public string Specie { get; set; } = string.Empty;
+    public string Name { get; private set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
+    public string Specie { get; private set; } = string.Empty;
 
-    public string BreedName { get; set; } = string.Empty;
+    public string Description { get; private set; } = string.Empty;
 
-    public string Color { get; set;} = string.Empty;
+    public string BreedName { get; set; private } = string.Empty;
 
-    public string HealthInfo { get; set; } = string.Empty;
+    public string Color { get; private set;} = string.Empty;
 
-    public string Address { get; set; } = string.Empty;
+    public string HealthInfo { get; private set; } = string.Empty;
 
-    public double Weight { get; set; }
+    public string Address { get; private set; } = string.Empty;
 
-    public double Height { get; set; } 
+    public double Weight { get; private set; }
 
-    public string PhoneNumber { get; set; } = string.Empty;
+    public double Height { get; private set; } 
 
-    public bool IsCastrated { get; set; }
+    public string PhoneNumber { get; private set; } = string.Empty;
 
-    public DateTime BirthDay { get; set; }
+    public bool IsCastrated { get; private set; }
 
-    public bool IsVaccinated { get; set; }
+    public DateTime BirthDay { get; private set; }
 
-    public HelpStatus HelpStatus { get; set; }
+    public bool IsVaccinated { get; private set; }
 
-    public DateTime CreatedAt { get; set; }
+    public HelpStatus HelpStatus { get; private set; }
 
-    public List<Requisite> Requisites { get; set; } = [];
+    public DateTime CreatedAt { get; private set; }
+
+    public IReadOnlyList<Requisite> Requisites => _requisites;
+
+    public void AddRequisite(Requisite requisite)
+    {
+        _requisites.Add(requisite);
+    }
 }
