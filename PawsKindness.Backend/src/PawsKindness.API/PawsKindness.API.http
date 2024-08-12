@@ -1,0 +1,6 @@
+@PawsKindness.API_HostAddress = http://localhost:5063
+
+GET {{PawsKindness.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
