@@ -37,4 +37,6 @@ public class Pet
     public DateTime CreatedAt { get; set; }
 
     public List<Requisite> Requisites { get; set; } = [];
+
+    public List<PetPhoto> Photos { get; set; } = [];
 }
