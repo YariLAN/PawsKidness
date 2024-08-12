@@ -14,7 +14,7 @@ public class Pet
 
     public string Description { get; private set; } = string.Empty;
 
-    public string BreedName { get; set; private } = string.Empty;
+    public string BreedName { get; private set; } = string.Empty;
 
     public string Color { get; private set;} = string.Empty;
 
