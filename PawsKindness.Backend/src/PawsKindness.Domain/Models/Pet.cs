@@ -6,6 +6,8 @@ public class Pet
 {
     private readonly List<Requisite> _requisites = [];
 
+    private readonly List<PetPhoto> _photos = [];
+
     public Guid Id { get; private set; }
 
     public string Name { get; private set; } = string.Empty;
@@ -40,8 +42,15 @@ public class Pet
 
     public IReadOnlyList<Requisite> Requisites => _requisites;
 
+    public IReadOnlyList<PetPhoto> Photos => _photos;
+
     public void AddRequisite(Requisite requisite)
     {
         _requisites.Add(requisite);
+    }
+
+    public void AddPhoto(PetPhoto photo)
+    {
+        _photos.Add(photo);
     }
 }
