@@ -7,11 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6ECDC8B9-774
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawsKindness.API", "src\PawsKindness.API\PawsKindness.API.csproj", "{EBA77708-F90C-4AE4-9872-434A10BCD8D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawsKindness.Infrastructure", "src\PawsKindness.Infrastructure\PawsKindness.Infrastructure.csproj", "{E21B7830-648F-4E8D-AFC2-AE8EAA19FD7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawsKindness.Infrastructure", "src\PawsKindness.Infrastructure\PawsKindness.Infrastructure.csproj", "{E21B7830-648F-4E8D-AFC2-AE8EAA19FD7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawsKindness.Domain", "src\PawsKindness.Domain\PawsKindness.Domain.csproj", "{7CBF7121-98E8-43EA-B7F6-C385F9B13636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawsKindness.Domain", "src\PawsKindness.Domain\PawsKindness.Domain.csproj", "{7CBF7121-98E8-43EA-B7F6-C385F9B13636}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawsKindness.Application", "src\PawsKindness.Application\PawsKindness.Application.csproj", "{2B1DBFBA-C9F1-4917-9519-D21FA6AA7B81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawsKindness.Application", "src\PawsKindness.Application\PawsKindness.Application.csproj", "{2B1DBFBA-C9F1-4917-9519-D21FA6AA7B81}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{74A13A7A-8077-45E3-AC7C-0B98EF4BE5CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{2B1DBFBA-C9F1-4917-9519-D21FA6AA7B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B1DBFBA-C9F1-4917-9519-D21FA6AA7B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B1DBFBA-C9F1-4917-9519-D21FA6AA7B81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A13A7A-8077-45E3-AC7C-0B98EF4BE5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A13A7A-8077-45E3-AC7C-0B98EF4BE5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A13A7A-8077-45E3-AC7C-0B98EF4BE5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A13A7A-8077-45E3-AC7C-0B98EF4BE5CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{E21B7830-648F-4E8D-AFC2-AE8EAA19FD7E} = {6ECDC8B9-774C-429A-A2E0-DD504671F668}
 		{7CBF7121-98E8-43EA-B7F6-C385F9B13636} = {6ECDC8B9-774C-429A-A2E0-DD504671F668}
 		{2B1DBFBA-C9F1-4917-9519-D21FA6AA7B81} = {6ECDC8B9-774C-429A-A2E0-DD504671F668}
+		{74A13A7A-8077-45E3-AC7C-0B98EF4BE5CF} = {6ECDC8B9-774C-429A-A2E0-DD504671F668}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B6E57495-ED2C-423C-9A06-2BF388BFA0DF}
