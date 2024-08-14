@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  pawskindness.api:
+    image: ${DOCKER_REGISTRY-}pawskindnessapi
+    build:
+      context: .
+      dockerfile: src/PawsKindness.API/Dockerfile
