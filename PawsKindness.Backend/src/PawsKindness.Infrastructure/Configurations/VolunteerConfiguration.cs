@@ -39,7 +39,7 @@ namespace PawsKindness.Infrastructure.Configurations
                 x.ToJson();
                 x.OwnsMany(r => r.Requisites, r =>
                 {
-                    r.Property(p => p.Description)
+                    r.Property(p => p.Name)
                         .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 
                     r.Property(p => p.Description)

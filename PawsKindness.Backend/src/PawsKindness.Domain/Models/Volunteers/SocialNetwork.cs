@@ -2,7 +2,7 @@
 
 public class SocialNetwork
 {
-    public SocialNetwork(string url, string name)
+    private SocialNetwork(string url, string name)
     {
         Url = url;
         Name = name;
