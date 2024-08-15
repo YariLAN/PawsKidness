@@ -36,9 +36,31 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.Property(p => p.HealthInfo)
           .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 
-        builder.Property(p => p.Address)
-          .HasMaxLength(Constants.HIGH_TEXT_LENGTH);
+        builder.ComplexProperty(
+            p => p.Address, ad =>
+            {
+                ad.Property(ad => ad.Country)
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 
+                ad.Property(ad => ad.City)
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+
+                ad.Property(ad => ad.PostCode)
+                  .IsRequired();
+
+                ad.Property(ad => ad.Street)
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH)
+                  .IsRequired(false);
+
+                ad.Property(ad => ad.HouseNumber)
+                  .HasMaxLength(Constants.MIN_LOW_TEXT_LENGTH)
+                  .IsRequired(false);
+
+                ad.Property(ad => ad.Apartment)
+                  .HasMaxLength(Constants.MIN_LOW_TEXT_LENGTH)
+                  .IsRequired(false);
+            });
+          
         builder.Property(p => p.PhoneNumber)
             .IsRequired(false);
 

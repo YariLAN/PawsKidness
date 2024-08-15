@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using PawsKindness.Domain.Models.Volunteers.Pets;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PawsKindness.Domain.Models.Volunteers;
 using PawsKindness.Domain.Shared;
 
@@ -19,14 +18,18 @@ namespace PawsKindness.Infrastructure.Configurations
                     id => id.Value, 
                     id => VolunteerId.Create(id));
 
-            builder.Property(x => x.Surname)
-                .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+            builder.ComplexProperty(
+                fullname => fullname.Name, fullname =>
+                {
+                    fullname.Property(f => f.Surname)
+                     .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 
-            builder.Property(x => x.Name)
-                .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+                    fullname.Property(f => f.Name)
+                     .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 
-            builder.Property(x => x.MiddleName)
-                .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+                    fullname.Property(f => f.MiddleName)
+                        .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+                }); 
 
             builder.Property(x => x.Description)
                 .HasMaxLength(Constants.HIGH_TEXT_LENGTH)

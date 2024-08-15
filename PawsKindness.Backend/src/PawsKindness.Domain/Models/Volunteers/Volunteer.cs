@@ -7,11 +7,7 @@ public class Volunteer : Entity<VolunteerId>
 {
     private readonly List<Pet> _pets = [];
 
-    public string Surname { get; private set; } = string.Empty;
-
-    public string Name { get; private set; } = string.Empty;
-
-    public string MiddleName { get; private set; } = string.Empty;
+    public FullName Name { get; private set; } = default!;
 
     public string Description { get; private set; } = string.Empty;
 
@@ -33,9 +29,7 @@ public class Volunteer : Entity<VolunteerId>
 
     private Volunteer(
         VolunteerId id, 
-        string sname, 
-        string name, 
-        string midName,
+        FullName name, 
         string description, 
         int dateExperience,
         int numPetFound,
@@ -43,9 +37,7 @@ public class Volunteer : Entity<VolunteerId>
         int numPetHelp,
         string phone) : base(id)
     {
-        Surname = sname;
         Name = name;
-        MiddleName = midName;
         Description = description;
         YearsExperience = dateExperience;
         NumberPetsFoundAHome = numPetFound;

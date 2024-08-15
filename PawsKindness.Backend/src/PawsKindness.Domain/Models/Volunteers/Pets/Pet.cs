@@ -1,6 +1,5 @@
 ﻿using PawsKindness.Domain.Enums;
 using PawsKindness.Domain.Shared;
-using System.Reflection;
 
 namespace PawsKindness.Domain.Models.Volunteers.Pets;
 
@@ -20,7 +19,7 @@ public class Pet : Entity<PetId>
 
     public string HealthInfo { get; private set; } = string.Empty;
 
-    public string Address { get; private set; } = string.Empty;
+    public Address Address { get; private set; } = default!;
 
     public double Weight { get; private set; }
 
@@ -52,7 +51,7 @@ public class Pet : Entity<PetId>
         string breedName,
         string color,
         string healthInfo,
-        string address,
+        Address address,
         double weight,
         double height,
         string phoneNumber,

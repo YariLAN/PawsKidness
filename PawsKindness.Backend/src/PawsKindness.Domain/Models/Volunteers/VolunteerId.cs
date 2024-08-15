@@ -1,6 +1,4 @@
-﻿using PawsKindness.Domain.Models.Volunteers.Pets;
-
-namespace PawsKindness.Domain.Models.Volunteers;
+﻿namespace PawsKindness.Domain.Models.Volunteers;
 
 public record VolunteerId
 {
