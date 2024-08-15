@@ -8,7 +8,7 @@ namespace PawsKindness.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<PetPhoto> builder)
         {
-            builder.ToTable(PetPhoto.TABLE_NAME);
+            builder.ToTable("pet_photos");
 
             builder.HasKey(p => p.Id);
 

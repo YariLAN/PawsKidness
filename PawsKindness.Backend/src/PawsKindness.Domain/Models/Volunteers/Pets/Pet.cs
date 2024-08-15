@@ -6,8 +6,6 @@ public class Pet
 {
     private readonly List<PetPhoto> _photos = [];
 
-    public const string TABLE_NAME = "pets";
-
     public Guid Id { get; private set; }
 
     public string Name { get; private set; } = string.Empty;

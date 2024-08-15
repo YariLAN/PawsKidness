@@ -10,7 +10,7 @@ namespace PawsKindness.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Volunteer> builder)
         {
-            builder.ToTable(Volunteer.TABLE_NAME);
+            builder.ToTable("volunteers");
 
             builder.HasKey(p => p.Id);
 

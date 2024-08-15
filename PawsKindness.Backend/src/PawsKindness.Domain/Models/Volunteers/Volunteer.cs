@@ -6,8 +6,6 @@ public class Volunteer
 {
     private readonly List<Pet> _pets = [];
 
-    public const string TABLE_NAME = "volunteers";
-
     public Guid Id { get; private set; }
 
     public string Surname { get; private set; } = string.Empty;
