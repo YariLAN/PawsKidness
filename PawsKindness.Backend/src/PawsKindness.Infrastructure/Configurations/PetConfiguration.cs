@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PawsKindness.Domain.Models.Volunteers;
 using PawsKindness.Domain.Models.Volunteers.Pets;
 using PawsKindness.Domain.Shared;
 
@@ -13,6 +12,9 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.ToTable("pets");
 
         builder.HasKey(p => p.Id);
+
+        builder.Property(p => p.Id)
+            .HasConversion(id => id.Value, id => PetId.Create(id));
 
         builder.Property(p => p.Name)
             .HasMaxLength(Constants.LOW_TEXT_LENGTH);

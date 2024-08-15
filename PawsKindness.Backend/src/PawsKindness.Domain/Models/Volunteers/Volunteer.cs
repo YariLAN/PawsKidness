@@ -1,12 +1,11 @@
 ﻿using PawsKindness.Domain.Models.Volunteers.Pets;
+using PawsKindness.Domain.Shared;
 
 namespace PawsKindness.Domain.Models.Volunteers;
 
-public class Volunteer
+public class Volunteer : Entity<VolunteerId>
 {
     private readonly List<Pet> _pets = [];
-
-    public Guid Id { get; private set; }
 
     public string Surname { get; private set; } = string.Empty;
 
@@ -29,6 +28,31 @@ public class Volunteer
     public VolunteerDetails? Details { get; private set; }
 
     public IReadOnlyList<Pet> Pets => _pets;
+
+    private Volunteer(VolunteerId id) : base(id) { }
+
+    private Volunteer(
+        VolunteerId id, 
+        string sname, 
+        string name, 
+        string midName,
+        string description, 
+        int dateExperience,
+        int numPetFound,
+        int numPetLooking,
+        int numPetHelp,
+        string phone) : base(id)
+    {
+        Surname = sname;
+        Name = name;
+        MiddleName = midName;
+        Description = description;
+        YearsExperience = dateExperience;
+        NumberPetsFoundAHome = numPetFound;
+        NumberPetsLookingForAHome = numPetLooking;
+        NumberPersNeedHelp = numPetHelp;
+        PhoneNumber = phone;
+    }
 
     public void AddPet(Pet pet)
     {

@@ -14,6 +14,11 @@ namespace PawsKindness.Infrastructure.Configurations
 
             builder.HasKey(p => p.Id);
 
+            builder.Property(p => p.Id)
+                .HasConversion(
+                    id => id.Value, 
+                    id => VolunteerId.Create(id));
+
             builder.Property(x => x.Surname)
                 .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 

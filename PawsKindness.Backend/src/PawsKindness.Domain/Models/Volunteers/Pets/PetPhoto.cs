@@ -1,11 +1,18 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers.Pets
+﻿using PawsKindness.Domain.Shared;
+
+namespace PawsKindness.Domain.Models.Volunteers.Pets;
+
+public class PetPhoto : Entity<PetPhotoId>
 {
-    public class PetPhoto
+    public string Path { get; private set; } = string.Empty;
+
+    public bool IsMain { get; private set; }
+    
+    private PetPhoto(PetPhotoId id) : base(id) { }
+
+    private PetPhoto(PetPhotoId id, string path, bool isMain) : base(id)
     {
-        public Guid Id { get; private set; }
-
-        public string Path { get; private set; } = string.Empty;
-
-        public bool IsMain { get; private set; }
-    }
+        Path = path;
+        IsMain = isMain;
+    } 
 }
