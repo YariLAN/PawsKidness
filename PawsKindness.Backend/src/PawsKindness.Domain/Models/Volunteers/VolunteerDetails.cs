@@ -1,6 +1,6 @@
 ﻿namespace PawsKindness.Domain.Models.Volunteers;
 
-public class VolunteerDetails
+public record VolunteerDetails
 {
     public List<Requisite> Requisites { get; } = [];
 

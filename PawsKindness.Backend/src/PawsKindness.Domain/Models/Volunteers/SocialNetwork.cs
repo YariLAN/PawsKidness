@@ -1,6 +1,6 @@
 ﻿namespace PawsKindness.Domain.Models.Volunteers;
 
-public class SocialNetwork
+public record SocialNetwork
 {
     private SocialNetwork(string url, string name)
     {
