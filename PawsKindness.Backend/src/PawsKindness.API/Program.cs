@@ -14,7 +14,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddScoped<ApplicationDbContext>(provider => new ApplicationDbContext(builder.Configuration));
+        builder.Services.AddScoped<ApplicationDbContext>();
   
         var app = builder.Build();
 
