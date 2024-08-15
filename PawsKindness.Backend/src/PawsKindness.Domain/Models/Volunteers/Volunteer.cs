@@ -1,11 +1,9 @@
-﻿namespace PawsKindness.Domain.Models;
+﻿using PawsKindness.Domain.Models.Volunteers.Pets;
+
+namespace PawsKindness.Domain.Models.Volunteers;
 
 public class Volunteer
 {
-    private readonly List<SocialNetwork> _socialNetworks = [];
-
-    private readonly List<Requisite> _requisites = [];
-
     private readonly List<Pet> _pets = [];
 
     public Guid Id { get; private set; }
@@ -28,21 +26,9 @@ public class Volunteer
 
     public string PhoneNumber { get; private set; } = string.Empty;
 
-    public IReadOnlyList<SocialNetwork> SocialNetworks => _socialNetworks;
+    public VolunteerDetails? Details { get; private set; }
 
-    public IReadOnlyList<Requisite> Requisites => _requisites;
-
-    public IReadOnlyList<Pet> Pets => _pets; 
-
-    public void AddSocialNetWork(SocialNetwork socialNetwork)
-    {
-        _socialNetworks.Add(socialNetwork);
-    }
-
-    public void AddRequisite(Requisite requisite)
-    {
-        _requisites.Add(requisite);
-    }
+    public IReadOnlyList<Pet> Pets => _pets;
 
     public void AddPet(Pet pet)
     {

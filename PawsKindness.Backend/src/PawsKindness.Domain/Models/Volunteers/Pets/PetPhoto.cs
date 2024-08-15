@@ -1,4 +1,4 @@
-﻿namespace PawsKindness.Domain.Models
+﻿namespace PawsKindness.Domain.Models.Volunteers.Pets
 {
     public class PetPhoto
     {

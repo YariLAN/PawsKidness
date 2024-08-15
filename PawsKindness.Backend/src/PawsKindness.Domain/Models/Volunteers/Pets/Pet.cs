@@ -1,11 +1,9 @@
 ﻿using PawsKindness.Domain.Enums;
 
-namespace PawsKindness.Domain.Models;
+namespace PawsKindness.Domain.Models.Volunteers.Pets;
 
 public class Pet
 {
-    private readonly List<Requisite> _requisites = [];
-
     private readonly List<PetPhoto> _photos = [];
 
     public Guid Id { get; private set; }
@@ -18,7 +16,7 @@ public class Pet
 
     public string BreedName { get; private set; } = string.Empty;
 
-    public string Color { get; private set;} = string.Empty;
+    public string Color { get; private set; } = string.Empty;
 
     public string HealthInfo { get; private set; } = string.Empty;
 
@@ -26,7 +24,7 @@ public class Pet
 
     public double Weight { get; private set; }
 
-    public double Height { get; private set; } 
+    public double Height { get; private set; }
 
     public string PhoneNumber { get; private set; } = string.Empty;
 
@@ -40,14 +38,9 @@ public class Pet
 
     public DateTime CreatedAt { get; private set; }
 
-    public IReadOnlyList<Requisite> Requisites => _requisites;
+    public PetDetails? Details { get; private set; }
 
     public IReadOnlyList<PetPhoto> Photos => _photos;
-
-    public void AddRequisite(Requisite requisite)
-    {
-        _requisites.Add(requisite);
-    }
 
     public void AddPhoto(PetPhoto photo)
     {
