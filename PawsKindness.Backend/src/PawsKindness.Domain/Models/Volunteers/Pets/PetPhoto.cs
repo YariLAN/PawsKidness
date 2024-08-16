@@ -15,4 +15,9 @@ public class PetPhoto : Entity<PetPhotoId>
         Path = path;
         IsMain = isMain;
     } 
+
+    public static PetPhoto Create(PetPhotoId id, string path, bool isMain)
+    {
+        return new PetPhoto(id, path, isMain);
+    }
 }

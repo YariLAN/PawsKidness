@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PawsKindness.Infrastructure;
@@ -12,9 +13,11 @@ using PawsKindness.Infrastructure;
 namespace PawsKindness.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240816162612_Refactoring_Volunteer")]
+    partial class Refactoring_Volunteer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,6 +186,12 @@ namespace PawsKindness.Infrastructure.Migrations
                         .HasColumnType("character varying(800)")
                         .HasColumnName("description");
 
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("phone_number");
+
                     b.Property<int>("YearsExperience")
                         .HasColumnType("integer")
                         .HasColumnName("years_experience");
@@ -208,17 +217,6 @@ namespace PawsKindness.Infrastructure.Migrations
                                 .HasMaxLength(100)
                                 .HasColumnType("character varying(100)")
                                 .HasColumnName("name_surname");
-                        });
-
-                    b.ComplexProperty<Dictionary<string, object>>("PhoneNumber", "PawsKindness.Domain.Models.Volunteers.Volunteer.PhoneNumber#PhoneNumber", b1 =>
-                        {
-                            b1.IsRequired();
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)")
-                                .HasColumnName("phone_number_value");
                         });
 
                     b.HasKey("Id")

@@ -5,15 +5,22 @@ using PawsKindness.Domain.Models.Volunteers;
 
 namespace PawsKindness.Infrastructure;
 
-public class ApplicationDbContext(IConfiguration configuration) : DbContext
+public class ApplicationDbContext : DbContext
 {
+    private readonly IConfiguration _configuration;
+    
     private const string DATABASE = "PawsKindnessDb";
 
     public DbSet<Volunteer> Volunteers { get; set; }
 
+    public ApplicationDbContext(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(configuration.GetConnectionString(DATABASE));
+        optionsBuilder.UseNpgsql(_configuration.GetConnectionString(DATABASE));
 
         optionsBuilder.UseSnakeCaseNamingConvention();
 

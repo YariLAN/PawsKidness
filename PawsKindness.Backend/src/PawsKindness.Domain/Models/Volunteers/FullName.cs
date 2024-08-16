@@ -8,10 +8,15 @@ public record FullName
 
     public string MiddleName { get; }
 
-    public FullName(string surname, string name, string middleName)
+    private FullName(string surname, string name, string middleName)
     {
         Surname = surname;
         Name = name;
         MiddleName = middleName;
+    }
+
+    public static FullName Create(string surname, string name, string middleName)
+    {
+        return new FullName(surname, name, middleName);
     }
 }
