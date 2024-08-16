@@ -14,7 +14,7 @@ public record Address
 
     public string Apartment { get; }
 
-    protected Address(string city, string country, int postCode, string street, string houseNumber, string apartment)
+    private Address(string city, string country, int postCode, string street, string houseNumber, string apartment)
     {
         City = city;
         Country = country;
@@ -22,5 +22,11 @@ public record Address
         Street = street;
         HouseNumber = houseNumber;
         Apartment = apartment;
+    }
+
+    public static Address Create(
+        string city, string country, int postCode, string street, string houseNum, string apart)
+    {
+        return new(city, country, postCode, street, houseNum, apart);
     }
 }

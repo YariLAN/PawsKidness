@@ -1,4 +1,5 @@
-﻿using PawsKindness.Domain.Models.Volunteers.Pets;
+﻿using PawsKindness.Domain.Enums;
+using PawsKindness.Domain.Models.Volunteers.Pets;
 using PawsKindness.Domain.Shared;
 
 namespace PawsKindness.Domain.Models.Volunteers;
@@ -13,12 +14,6 @@ public class Volunteer : Entity<VolunteerId>
 
     public int YearsExperience { get; private set; }
 
-    public int NumberPetsFoundAHome { get; private set; }
-
-    public int NumberPetsLookingForAHome { get; private set; }
-
-    public int NumberPersNeedHelp { get; private set; }
-
     public string PhoneNumber { get; private set; } = string.Empty;
 
     public VolunteerDetails? Details { get; private set; }
@@ -27,27 +22,28 @@ public class Volunteer : Entity<VolunteerId>
 
     private Volunteer(VolunteerId id) : base(id) { }
 
-    private Volunteer(
-        VolunteerId id, 
-        FullName name, 
-        string description, 
-        int dateExperience,
-        int numPetFound,
-        int numPetLooking,
-        int numPetHelp,
-        string phone) : base(id)
+    private Volunteer(VolunteerId id, FullName name, string description, int dateExperience, string phone)
+        : base(id)
     {
         Name = name;
         Description = description;
         YearsExperience = dateExperience;
-        NumberPetsFoundAHome = numPetFound;
-        NumberPetsLookingForAHome = numPetLooking;
-        NumberPersNeedHelp = numPetHelp;
         PhoneNumber = phone;
     }
+
+    public int CountPetsFoundAHome => _pets.Count(x => x.HelpStatus == HelpStatus.FoundAHome);
+
+    public int CountPetsLookingForAHome => _pets.Count(x => x.HelpStatus == HelpStatus.LookingForAHome);
+
+    public int CountPersNeedHelp => _pets.Count(x => x.HelpStatus == HelpStatus.NeedHelp);
 
     public void AddPet(Pet pet)
     {
         _pets.Add(pet);
+    }
+
+    public static Volunteer Create(VolunteerId id, FullName name, string desc, int yearExperience, string phone)
+    {
+        return new Volunteer(id, name, desc, yearExperience, phone);
     }
 }
