@@ -15,8 +15,8 @@ public record FullName
         MiddleName = middleName;
     }
 
-    public static FullName Create(string sur, string name, string midName)
+    public static FullName Create(string surname, string name, string middleName)
     {
-        return new FullName(sur, name, midName);
+        return new FullName(surname, name, middleName);
     }
 }

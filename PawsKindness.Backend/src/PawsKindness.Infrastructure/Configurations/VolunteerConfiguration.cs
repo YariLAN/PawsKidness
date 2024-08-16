@@ -35,8 +35,12 @@ namespace PawsKindness.Infrastructure.Configurations
                 .HasMaxLength(Constants.HIGH_TEXT_LENGTH)
                 .IsRequired(false);
 
-            builder.Property(x => x.PhoneNumber)
-                .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+            builder.ComplexProperty(
+                x => x.PhoneNumber, ph =>
+                {
+                    ph.Property(ph => ph.Value)
+                      .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+                });
 
             builder.HasMany(x => x.Pets)
                 .WithOne()

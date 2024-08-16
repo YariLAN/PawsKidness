@@ -14,7 +14,7 @@ public class Volunteer : Entity<VolunteerId>
 
     public int YearsExperience { get; private set; }
 
-    public string PhoneNumber { get; private set; } = string.Empty;
+    public PhoneNumber PhoneNumber { get; private set; } = default!;
 
     public VolunteerDetails? Details { get; private set; }
 
@@ -22,7 +22,7 @@ public class Volunteer : Entity<VolunteerId>
 
     private Volunteer(VolunteerId id) : base(id) { }
 
-    private Volunteer(VolunteerId id, FullName name, string description, int dateExperience, string phone)
+    private Volunteer(VolunteerId id, FullName name, string description, int dateExperience, PhoneNumber phone)
         : base(id)
     {
         Name = name;
@@ -42,8 +42,8 @@ public class Volunteer : Entity<VolunteerId>
         _pets.Add(pet);
     }
 
-    public static Volunteer Create(VolunteerId id, FullName name, string desc, int yearExperience, string phone)
+    public static Volunteer Create(VolunteerId id, FullName name, string description, int yearExperience, PhoneNumber phone)
     {
-        return new Volunteer(id, name, desc, yearExperience, phone);
+        return new Volunteer(id, name, description, yearExperience, phone);
     }
 }
