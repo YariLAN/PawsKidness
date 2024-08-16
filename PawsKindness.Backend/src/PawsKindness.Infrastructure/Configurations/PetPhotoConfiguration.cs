@@ -12,6 +12,11 @@ namespace PawsKindness.Infrastructure.Configurations
 
             builder.HasKey(p => p.Id);
 
+            builder.Property(p => p.Id)
+                .HasConversion(
+                    id => id.Value, 
+                    id => PetPhotoId.Create(id));
+
             builder.Property(x => x.Path)
                 .IsRequired();
 

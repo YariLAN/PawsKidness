@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PawsKindness.Domain.Models.Volunteers;
 using PawsKindness.Domain.Models.Volunteers.Pets;
 using PawsKindness.Domain.Shared;
 
@@ -13,6 +12,9 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.ToTable("pets");
 
         builder.HasKey(p => p.Id);
+
+        builder.Property(p => p.Id)
+            .HasConversion(id => id.Value, id => PetId.Create(id));
 
         builder.Property(p => p.Name)
             .HasMaxLength(Constants.LOW_TEXT_LENGTH);
@@ -34,9 +36,31 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.Property(p => p.HealthInfo)
           .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 
-        builder.Property(p => p.Address)
-          .HasMaxLength(Constants.HIGH_TEXT_LENGTH);
+        builder.ComplexProperty(
+            p => p.Address, ad =>
+            {
+                ad.Property(ad => ad.Country)
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH);
 
+                ad.Property(ad => ad.City)
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+
+                ad.Property(ad => ad.PostCode)
+                  .IsRequired();
+
+                ad.Property(ad => ad.Street)
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH)
+                  .IsRequired(false);
+
+                ad.Property(ad => ad.HouseNumber)
+                  .HasMaxLength(Constants.MIN_LOW_TEXT_LENGTH)
+                  .IsRequired(false);
+
+                ad.Property(ad => ad.Apartment)
+                  .HasMaxLength(Constants.MIN_LOW_TEXT_LENGTH)
+                  .IsRequired(false);
+            });
+          
         builder.Property(p => p.PhoneNumber)
             .IsRequired(false);
 
