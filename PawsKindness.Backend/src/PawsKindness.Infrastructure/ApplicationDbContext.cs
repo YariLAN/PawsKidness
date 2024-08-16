@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using PawsKindness.Domain.Models.Species;
 using PawsKindness.Domain.Models.Volunteers;
 
 namespace PawsKindness.Infrastructure;
@@ -12,6 +13,8 @@ public class ApplicationDbContext : DbContext
     private const string DATABASE = "PawsKindnessDb";
 
     public DbSet<Volunteer> Volunteers { get; set; }
+
+    public DbSet<Species> Species { get; set; }
 
     public ApplicationDbContext(IConfiguration configuration)
     {

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PawsKindness.Domain.Models.Species;
+using PawsKindness.Domain.Models.Species.Breeds;
 using PawsKindness.Domain.Models.Volunteers.Pets;
 using PawsKindness.Domain.Shared;
 
@@ -23,11 +25,14 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             .HasMaxLength(Constants.HIGH_TEXT_LENGTH)
             .IsRequired(false);
 
-        builder.Property(p => p.Species)
-            .HasMaxLength(Constants.LOW_TEXT_LENGTH);
-
-        builder.Property(p => p.BreedName)
-            .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+        builder.ComplexProperty(p => p.Type, t =>
+        {
+            t.Property(t => t.SpeciesId)
+                .HasConversion(x => x.Value, id => SpeciesId.Create(id));            
+            
+            t.Property(t => t.BreedId)
+                .HasConversion(x => x.Value, id => BreedId.Create(id));
+        });
 
         builder.Property(p => p.Color)
            .HasMaxLength(Constants.LOW_TEXT_LENGTH)
@@ -63,6 +68,9 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
           
         builder.Property(p => p.PhoneNumber)
             .IsRequired(false);
+
+        builder.Property(p => p.BirthDay)
+            .HasColumnType("timestamp without time zone");
 
         builder.OwnsOne(x => x.Details, x =>
         {
