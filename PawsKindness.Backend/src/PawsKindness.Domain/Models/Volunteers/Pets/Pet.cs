@@ -9,11 +9,9 @@ public class Pet : Entity<PetId>
 
     public string Name { get; private set; } = string.Empty;
 
-    public string Species { get; private set; } = string.Empty;
-
     public string Description { get; private set; } = string.Empty;
 
-    public string BreedName { get; private set; } = string.Empty;
+    public Type Type { get; private set; } = default!;
 
     public string Color { get; private set; } = string.Empty;
 
@@ -35,7 +33,7 @@ public class Pet : Entity<PetId>
 
     public HelpStatus HelpStatus { get; private set; }
 
-    public DateTime CreatedAt { get; private set; }
+    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 
     public PetDetails? Details { get; private set; }
 
@@ -46,9 +44,8 @@ public class Pet : Entity<PetId>
     private Pet(
         PetId id,
         string name,
-        string species,
         string description,
-        string breedName,
+        Type type,
         string color,
         string healthInfo,
         Address address,
@@ -59,13 +56,11 @@ public class Pet : Entity<PetId>
         DateTime birthDay,
         bool isVaccinated,
         HelpStatus helpStatus,
-        DateTime createdAt,
         PetDetails? details) : base(id)
     {
         Name = name;
-        Species = species;
         Description = description;
-        BreedName = breedName;
+        Type = type;
         Color = color;
         HealthInfo = healthInfo;
         Address = address;
@@ -76,7 +71,6 @@ public class Pet : Entity<PetId>
         BirthDay = birthDay;
         IsVaccinated = isVaccinated;
         HelpStatus = helpStatus;
-        CreatedAt = createdAt;
         Details = details;
     }
 
