@@ -286,14 +286,14 @@ namespace PawsKindness.Infrastructure.Migrations
                         .HasForeignKey("volunteer_id")
                         .HasConstraintName("fk_pets_volunteers_volunteer_id");
 
-                    b.OwnsOne("PawsKindness.Domain.Models.Volunteers.Pets.PetDetails", "Details", b1 =>
+                    b.OwnsOne("PawsKindness.Domain.Models.Volunteers.Pets.Pet.Details#PawsKindness.Domain.Models.Volunteers.Pets.PetDetails", "Details", b1 =>
                         {
                             b1.Property<Guid>("PetId")
                                 .HasColumnType("uuid");
 
                             b1.HasKey("PetId");
 
-                            b1.ToTable("pets");
+                            b1.ToTable("pets", (string)null);
 
                             b1.ToJson("details");
 
@@ -301,7 +301,7 @@ namespace PawsKindness.Infrastructure.Migrations
                                 .HasForeignKey("PetId")
                                 .HasConstraintName("fk_pets_pets_id");
 
-                            b1.OwnsMany("PawsKindness.Domain.Models.Volunteers.Requisite", "Requisites", b2 =>
+                            b1.OwnsMany("PawsKindness.Domain.Models.Volunteers.Pets.Pet.Details#PawsKindness.Domain.Models.Volunteers.Pets.PetDetails.Requisites#PawsKindness.Domain.Models.Volunteers.Requisite", "Requisites", b2 =>
                                 {
                                     b2.Property<Guid>("PetDetailsPetId")
                                         .HasColumnType("uuid");
@@ -316,7 +316,7 @@ namespace PawsKindness.Infrastructure.Migrations
 
                                     b2.HasKey("PetDetailsPetId", "Id");
 
-                                    b2.ToTable("pets");
+                                    b2.ToTable("pets", (string)null);
 
                                     b2.ToJson("details");
 
@@ -341,14 +341,14 @@ namespace PawsKindness.Infrastructure.Migrations
 
             modelBuilder.Entity("PawsKindness.Domain.Models.Volunteers.Volunteer", b =>
                 {
-                    b.OwnsOne("PawsKindness.Domain.Models.Volunteers.VolunteerDetails", "Details", b1 =>
+                    b.OwnsOne("PawsKindness.Domain.Models.Volunteers.Volunteer.Details#PawsKindness.Domain.Models.Volunteers.VolunteerDetails", "Details", b1 =>
                         {
                             b1.Property<Guid>("VolunteerId")
                                 .HasColumnType("uuid");
 
                             b1.HasKey("VolunteerId");
 
-                            b1.ToTable("volunteers");
+                            b1.ToTable("volunteers", (string)null);
 
                             b1.ToJson("details");
 
@@ -356,32 +356,7 @@ namespace PawsKindness.Infrastructure.Migrations
                                 .HasForeignKey("VolunteerId")
                                 .HasConstraintName("fk_volunteers_volunteers_id");
 
-                            b1.OwnsMany("PawsKindness.Domain.Models.Volunteers.SocialNetwork", "SocialNetworks", b2 =>
-                                {
-                                    b2.Property<Guid>("VolunteerDetailsVolunteerId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<int>("Id")
-                                        .ValueGeneratedOnAdd()
-                                        .HasColumnType("integer");
-
-                                    b2.Property<string>("Name")
-                                        .IsRequired()
-                                        .HasMaxLength(100)
-                                        .HasColumnType("character varying(100)");
-
-                                    b2.HasKey("VolunteerDetailsVolunteerId", "Id");
-
-                                    b2.ToTable("volunteers");
-
-                                    b2.ToJson("details");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("VolunteerDetailsVolunteerId")
-                                        .HasConstraintName("fk_volunteers_volunteers_volunteer_details_volunteer_id");
-                                });
-
-                            b1.OwnsMany("PawsKindness.Domain.Models.Volunteers.Requisite", "Requisites", b2 =>
+                            b1.OwnsMany("PawsKindness.Domain.Models.Volunteers.Volunteer.Details#PawsKindness.Domain.Models.Volunteers.VolunteerDetails.Requisites#PawsKindness.Domain.Models.Volunteers.Requisite", "Requisites", b2 =>
                                 {
                                     b2.Property<Guid>("VolunteerDetailsVolunteerId")
                                         .HasColumnType("uuid");
@@ -401,7 +376,32 @@ namespace PawsKindness.Infrastructure.Migrations
 
                                     b2.HasKey("VolunteerDetailsVolunteerId", "Id");
 
-                                    b2.ToTable("volunteers");
+                                    b2.ToTable("volunteers", (string)null);
+
+                                    b2.ToJson("details");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("VolunteerDetailsVolunteerId")
+                                        .HasConstraintName("fk_volunteers_volunteers_volunteer_details_volunteer_id");
+                                });
+
+                            b1.OwnsMany("PawsKindness.Domain.Models.Volunteers.Volunteer.Details#PawsKindness.Domain.Models.Volunteers.VolunteerDetails.SocialNetworks#PawsKindness.Domain.Models.Volunteers.SocialNetwork", "SocialNetworks", b2 =>
+                                {
+                                    b2.Property<Guid>("VolunteerDetailsVolunteerId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<int>("Id")
+                                        .ValueGeneratedOnAdd()
+                                        .HasColumnType("integer");
+
+                                    b2.Property<string>("Name")
+                                        .IsRequired()
+                                        .HasMaxLength(100)
+                                        .HasColumnType("character varying(100)");
+
+                                    b2.HasKey("VolunteerDetailsVolunteerId", "Id");
+
+                                    b2.ToTable("volunteers", (string)null);
 
                                     b2.ToJson("details");
 

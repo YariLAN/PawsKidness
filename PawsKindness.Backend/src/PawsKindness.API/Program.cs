@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PawsKindness.Application;
 using PawsKindness.Infrastructure;
 
 namespace PawsKindness.API;
@@ -14,7 +15,11 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddScoped<ApplicationDbContext>();
+        //builder.Services
+        //    .AddInfrastructure()
+        //    .AddApplication();
+
+        builder.Services.AddScoped<ApplicationDbContext>(x => new ApplicationDbContext(builder.Configuration));
 
         var app = builder.Build();
 

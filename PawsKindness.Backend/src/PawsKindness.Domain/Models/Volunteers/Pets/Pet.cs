@@ -33,7 +33,7 @@ public class Pet : Entity<PetId>
 
     public HelpStatus HelpStatus { get; private set; }
 
-    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; private set; }
 
     public PetDetails? Details { get; private set; }
 
@@ -56,6 +56,7 @@ public class Pet : Entity<PetId>
         DateTime birthDay,
         bool isVaccinated,
         HelpStatus helpStatus,
+        DateTime createdAt,
         PetDetails? details) : base(id)
     {
         Name = name;
@@ -71,6 +72,7 @@ public class Pet : Entity<PetId>
         BirthDay = birthDay;
         IsVaccinated = isVaccinated;
         HelpStatus = helpStatus;
+        CreatedAt = createdAt;
         Details = details;
     }
 

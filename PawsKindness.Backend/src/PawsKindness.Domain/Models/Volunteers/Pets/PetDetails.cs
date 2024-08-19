@@ -2,5 +2,12 @@
 
 public record PetDetails
 {
-    public List<Requisite> Requisites { get; } = [];
+    public IReadOnlyList<Requisite> Requisites { get; }
+
+    public PetDetails() { }
+
+    public PetDetails(IEnumerable<Requisite> requisites)
+    {
+        Requisites = requisites.ToList();
+    }
 }

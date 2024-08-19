@@ -28,10 +28,10 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.ComplexProperty(p => p.Type, t =>
         {
             t.Property(t => t.SpeciesId)
-                .HasConversion(x => x.Value, id => SpeciesId.Create(id));            
-            
+                .HasConversion(x => x.Value, id => SpeciesId.Create(id));
+
             t.Property(t => t.BreedId)
-                .HasConversion(x => x.Value, id => BreedId.Create(id));
+                .IsRequired();
         });
 
         builder.Property(p => p.Color)
