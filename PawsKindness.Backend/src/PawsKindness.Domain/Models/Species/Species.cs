@@ -1,9 +1,10 @@
-﻿using PawsKindness.Domain.Models.Species.Breeds;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Models.Species.Breeds;
 using PawsKindness.Domain.Shared;
 
 namespace PawsKindness.Domain.Models.Species;
 
-public class Species : Entity<SpeciesId>
+public class Species : Shared.Entity<SpeciesId>
 {
     private readonly List<Breed> _breeds = [];
 
@@ -23,8 +24,18 @@ public class Species : Entity<SpeciesId>
         _breeds.Add(breed);
     }
 
-    public static Species Create(SpeciesId id, string name)
+    public static Result<Species, Error> Create(SpeciesId id, string name)
     {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return Errors.General.ValueIsEmpty(nameof(Name));
+        }
+
+        if (name.Length > Constants.LOW_TEXT_LENGTH)
+        {
+            return Errors.General.ValueIsInvalidLength(nameof(Name));
+        }
+
         return new Species(id, name);
     }
 }

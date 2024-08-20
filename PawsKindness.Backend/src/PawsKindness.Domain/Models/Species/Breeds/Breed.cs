@@ -1,8 +1,9 @@
-﻿using PawsKindness.Domain.Shared;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Shared;
 
 namespace PawsKindness.Domain.Models.Species.Breeds;
 
-public class Breed : Entity<BreedId>
+public class Breed : Shared.Entity<BreedId>
 {
     public string Name { get; private set; } = string.Empty;
 
@@ -13,8 +14,18 @@ public class Breed : Entity<BreedId>
         Name = name;
     }
 
-    public static Breed Create(BreedId id, string name)
+    public static Result<Breed, Error> Create(BreedId id, string name)
     {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return Errors.General.ValueIsEmpty(nameof(Name));
+        }
+
+        if (name.Length > Constants.LOW_TEXT_LENGTH)
+        {
+            return Errors.General.ValueIsInvalidLength(nameof(Name));
+        }
+
         return new Breed(id, name);
     }
 }

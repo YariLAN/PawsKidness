@@ -28,10 +28,10 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.ComplexProperty(p => p.Type, t =>
         {
             t.Property(t => t.SpeciesId)
-                .HasConversion(x => x.Value, id => SpeciesId.Create(id));            
-            
+                .HasConversion(x => x.Value, id => SpeciesId.Create(id));
+
             t.Property(t => t.BreedId)
-                .HasConversion(x => x.Value, id => BreedId.Create(id));
+                .IsRequired();
         });
 
         builder.Property(p => p.Color)
@@ -65,12 +65,17 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
                   .HasMaxLength(Constants.MIN_LOW_TEXT_LENGTH)
                   .IsRequired(false);
             });
-          
-        builder.Property(p => p.PhoneNumber)
-            .IsRequired(false);
+
+        builder.ComplexProperty(
+            x => x.PhoneNumber, ph =>
+            {
+                ph.Property(ph => ph.Value)
+                  .IsRequired()
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+            });
 
         builder.Property(p => p.BirthDay)
-            .HasColumnType("timestamp without time zone");
+            .IsRequired();
 
         builder.OwnsOne(x => x.Details, x =>
         {

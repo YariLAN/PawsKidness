@@ -1,4 +1,7 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Shared;
+
+namespace PawsKindness.Domain.Models.Volunteers;
 
 public record Requisite
 {
@@ -14,8 +17,14 @@ public record Requisite
         Description = description;
     }
 
-    public static Requisite Create(string name, string description)
+    public static Result<Requisite, Error> Create(string name, string description)
     {
+        if (string.IsNullOrWhiteSpace(name)) 
+            return Errors.General.ValueIsEmpty(nameof(Name));
+
+        if (description.Length > Constants.HIGH_TEXT_LENGTH)
+            return Errors.General.ValueIsInvalidLength(nameof(Description));
+
         return new Requisite(name, description);
     }
 }
