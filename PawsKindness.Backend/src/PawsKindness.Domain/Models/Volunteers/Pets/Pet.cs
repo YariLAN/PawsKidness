@@ -28,7 +28,7 @@ public class Pet : Shared.Entity<PetId>
 
     public bool IsCastrated { get; private set; }
 
-    public DateOnly? BirthDay { get; private set; }
+    public DateOnly BirthDay { get; private set; }
 
     public bool IsVaccinated { get; private set; }
 
@@ -54,7 +54,7 @@ public class Pet : Shared.Entity<PetId>
         double height,
         PhoneNumber phoneNumber,
         bool isCastrated,
-        DateOnly? birthDay,
+        DateOnly birthDay,
         bool isVaccinated,
         HelpStatus helpStatus,
         DateTime createdAt,
@@ -94,7 +94,7 @@ public class Pet : Shared.Entity<PetId>
         double height,
         PhoneNumber phoneNumber,
         bool isCastrated,
-        DateOnly? birthDay,
+        DateOnly birthDay,
         bool isVaccinated,
         HelpStatus helpStatus,
         DateTime createdAt,

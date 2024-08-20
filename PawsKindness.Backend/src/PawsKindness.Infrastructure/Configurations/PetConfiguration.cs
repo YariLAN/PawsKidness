@@ -75,7 +75,7 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             });
 
         builder.Property(p => p.BirthDay)
-            .IsRequired(false);
+            .IsRequired();
 
         builder.OwnsOne(x => x.Details, x =>
         {
