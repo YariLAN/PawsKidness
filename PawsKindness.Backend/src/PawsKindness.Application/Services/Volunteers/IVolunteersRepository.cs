@@ -1,6 +1,6 @@
 ﻿using PawsKindness.Domain.Models.Volunteers;
 
-namespace PawsKindness.Application.Volunteers.Interfaces;
+namespace PawsKindness.Application.Services.Volunteers;
 
 public interface IVolunteersRepository
 {

@@ -1,4 +1,7 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Shared;
+
+namespace PawsKindness.Domain.Models.Volunteers;
 
 public record FullName
 {
@@ -15,8 +18,14 @@ public record FullName
         MiddleName = middleName;
     }
 
-    public static FullName Create(string surname, string name, string middleName)
+    public static Result<FullName, Error> Create(string surname, string name, string middleName)
     {
+        if (string.IsNullOrWhiteSpace(surname))
+            return Errors.General.ValueIsEmpty(nameof(Surname));
+
+        if (string.IsNullOrWhiteSpace(name))
+            return Errors.General.ValueIsEmpty(nameof(Name));
+
         return new FullName(surname, name, middleName);
     }
 }

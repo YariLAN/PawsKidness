@@ -1,4 +1,4 @@
-﻿namespace PawsKindness.Application.Volunteers.CreateVolunteer;
+﻿namespace PawsKindness.Application.Services.Volunteers.CreateVolunteer;
 
 public interface ICreateVolunteerService
 {

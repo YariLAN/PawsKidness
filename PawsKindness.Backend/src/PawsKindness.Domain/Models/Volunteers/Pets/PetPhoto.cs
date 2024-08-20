@@ -1,8 +1,9 @@
-﻿using PawsKindness.Domain.Shared;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Shared;
 
 namespace PawsKindness.Domain.Models.Volunteers.Pets;
 
-public class PetPhoto : Entity<PetPhotoId>
+public class PetPhoto : Shared.Entity<PetPhotoId>
 {
     public string Path { get; private set; } = string.Empty;
 
@@ -16,8 +17,13 @@ public class PetPhoto : Entity<PetPhotoId>
         IsMain = isMain;
     } 
 
-    public static PetPhoto Create(PetPhotoId id, string path, bool isMain)
+    public static Result<PetPhoto, Error> Create(PetPhotoId id, string path, bool isMain)
     {
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return Errors.General.ValueIsEmpty(nameof(Path));
+        }
+
         return new PetPhoto(id, path, isMain);
     }
 }

@@ -1,10 +1,11 @@
-﻿using PawsKindness.Domain.Enums;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Enums;
 using PawsKindness.Domain.Models.Volunteers.Pets;
 using PawsKindness.Domain.Shared;
 
 namespace PawsKindness.Domain.Models.Volunteers;
 
-public class Volunteer : Entity<VolunteerId>
+public class Volunteer : Shared.Entity<VolunteerId>
 {
     private readonly List<Pet> _pets = [];
 
@@ -22,13 +23,20 @@ public class Volunteer : Entity<VolunteerId>
 
     private Volunteer(VolunteerId id) : base(id) { }
 
-    private Volunteer(VolunteerId id, FullName name, string description, int dateExperience, PhoneNumber phone)
+    private Volunteer(
+        VolunteerId id, 
+        FullName name, 
+        string description, 
+        int dateExperience, 
+        PhoneNumber phone, 
+        VolunteerDetails? details = null)
         : base(id)
     {
         Name = name;
         Description = description;
         YearsExperience = dateExperience;
         PhoneNumber = phone;
+        Details = details;
     }
 
     public int CountPetsFoundAHome => _pets.Count(x => x.HelpStatus == HelpStatus.FoundAHome);
@@ -42,8 +50,20 @@ public class Volunteer : Entity<VolunteerId>
         _pets.Add(pet);
     }
 
-    public static Volunteer Create(VolunteerId id, FullName name, string description, int yearExperience, PhoneNumber phone)
+    public static Result<Volunteer, Error> Create(
+        VolunteerId id, 
+        FullName name, 
+        string description, 
+        int yearExperience, 
+        PhoneNumber phone,
+        VolunteerDetails? details)
     {
-        return new Volunteer(id, name, description, yearExperience, phone);
+        if (description.Length > Constants.HIGH_TEXT_LENGTH)
+            return Errors.General.ValueIsInvalidLength(nameof(Description));
+
+        if (yearExperience < 0 || yearExperience > 100)
+            return Errors.General.ValueIsInvalid(nameof(YearsExperience));
+
+        return new Volunteer(id, name, description, yearExperience, phone, details);
     }
 }

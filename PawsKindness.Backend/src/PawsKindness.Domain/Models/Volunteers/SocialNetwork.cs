@@ -1,4 +1,7 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Shared;
+
+namespace PawsKindness.Domain.Models.Volunteers;
 
 public record SocialNetwork
 {
@@ -14,8 +17,17 @@ public record SocialNetwork
         Name = name;
     }
 
-    public static SocialNetwork Create(string url, string name)
+    public static Result<SocialNetwork, Error> Create(string url, string name)
     {
+        if (string.IsNullOrWhiteSpace(url))
+            return Errors.General.ValueIsEmpty(nameof(Url));
+
+        if (string.IsNullOrWhiteSpace(name))
+            return Errors.General.ValueIsEmpty(nameof(Name));
+
+        if (name.Length > Constants.LOW_TEXT_LENGTH)
+            return Errors.General.ValueIsInvalidLength(nameof(Name));
+
         return new SocialNetwork(url, name);
     }
 }

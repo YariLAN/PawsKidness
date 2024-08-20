@@ -1,4 +1,4 @@
-﻿using PawsKindness.Application.Volunteers.Interfaces;
+﻿using PawsKindness.Application.Services.Volunteers;
 using PawsKindness.Domain.Models.Volunteers;
 
 namespace PawsKindness.Infrastructure.Repositories;

@@ -65,12 +65,17 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
                   .HasMaxLength(Constants.MIN_LOW_TEXT_LENGTH)
                   .IsRequired(false);
             });
-          
-        builder.Property(p => p.PhoneNumber)
-            .IsRequired(false);
+
+        builder.ComplexProperty(
+            x => x.PhoneNumber, ph =>
+            {
+                ph.Property(ph => ph.Value)
+                  .IsRequired()
+                  .HasMaxLength(Constants.LOW_TEXT_LENGTH);
+            });
 
         builder.Property(p => p.BirthDay)
-            .HasColumnType("timestamp without time zone");
+            .IsRequired(false);
 
         builder.OwnsOne(x => x.Details, x =>
         {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PawsKindness.Application.Volunteers.CreateVolunteer;
+using PawsKindness.Application.Services.Volunteers.CreateVolunteer;
 
 namespace PawsKindness.Application;
 

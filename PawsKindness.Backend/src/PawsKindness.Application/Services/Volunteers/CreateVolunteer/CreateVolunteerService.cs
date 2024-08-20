@@ -1,11 +1,11 @@
-﻿using PawsKindness.Application.Volunteers.Interfaces;
+﻿using PawsKindness.Application.Services.Volunteers;
 
-namespace PawsKindness.Application.Volunteers.CreateVolunteer;
+namespace PawsKindness.Application.Services.Volunteers.CreateVolunteer;
 
 public class CreateVolunteerService : ICreateVolunteerService
 {
     private readonly IVolunteersRepository _volunteersRepository;
-    
+
     public CreateVolunteerService(IVolunteersRepository volunteersRepository)
     {
         _volunteersRepository = volunteersRepository;

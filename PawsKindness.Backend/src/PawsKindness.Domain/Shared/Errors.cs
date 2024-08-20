@@ -6,9 +6,16 @@ public class Errors
     {
         public static Error ValueIsInvalid(string? name = null)
         {
-            var forName = name ?? "";
+            var forName = name ?? "Value";
 
-            return Error.Validation("value.is.invalid", $"Value \"{forName}\" is invalid");
+            return Error.Validation("value.is.invalid", $"\"{forName}\" is invalid");
+        }
+
+        public static Error ValueIsEmpty(string? name = null)
+        {
+            var forName = name ?? "Value";
+
+            return Error.Validation("value.is.empty", $"{name} can not be empty.");
         }
 
         public static Error NotFound(Guid? id = null)
