@@ -17,4 +17,11 @@ public record VolunteerDetails
         Requisites = requisites.ToList();
         SocialNetworks = socialNetworks.ToList();
     }
+
+    public static VolunteerDetails Create(
+        IEnumerable<Requisite> requisites,
+        IEnumerable<SocialNetwork> socialNetworks)
+    {
+        return new VolunteerDetails(requisites, socialNetworks);
+    }
 }

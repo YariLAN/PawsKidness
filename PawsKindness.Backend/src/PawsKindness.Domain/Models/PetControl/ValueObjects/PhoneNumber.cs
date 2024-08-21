@@ -22,5 +22,14 @@ namespace PawsKindness.Domain.Models.PetControl.ValueObjects
 
             return new PhoneNumber(value);
         }
+
+        public static implicit operator string(PhoneNumber value)
+        {
+            ArgumentNullException.ThrowIfNull(value);
+
+            return value.Value;
+        }
+
+        public static implicit operator PhoneNumber(string value) => new PhoneNumber(value);
     }
 }

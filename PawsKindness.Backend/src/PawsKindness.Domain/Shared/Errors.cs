@@ -22,7 +22,7 @@ public class Errors
         {
             string forId = id is null
                 ? ""
-                : $": id = {id}";
+                : $"by id = {id}";
                 
             return Error.NotFound("record.not.found", $"Record not found{forId}");
         }
@@ -34,6 +34,23 @@ public class Errors
                 : " " + name + " ";
 
             return Error.Validation("length.is.invalid", $"Invalid{forName}length");
+        }
+
+        public static Error AlreadyExist()
+        {
+            return Error.Validation("record.already.exist", "Value already exist");
+        }
+    }
+
+    public static class PetControl
+    {
+        public static Error NotFound(string phone)
+        {
+            string label = phone is null
+                ? ""
+                : $": {phone}";
+
+            return Error.NotFound("record.not.found", $"Record not found by phone{label}");
         }
     }
 }
