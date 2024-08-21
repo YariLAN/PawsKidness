@@ -1,7 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Volunteers
+namespace PawsKindness.Domain.Models.PetControl.ValueObjects
 {
     public record PhoneNumber
     {

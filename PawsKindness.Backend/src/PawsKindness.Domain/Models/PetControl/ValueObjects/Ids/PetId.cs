@@ -1,10 +1,10 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers.Pets;
+﻿namespace PawsKindness.Domain.Models.PetControl.ValueObjects.Ids;
 
 public record PetId
 {
     public Guid Value { get; }
 
-    protected PetId(Guid id) 
+    protected PetId(Guid id)
     {
         Value = id;
     }

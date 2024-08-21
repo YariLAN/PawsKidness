@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using PawsKindness.Domain.Models.Species;
-using PawsKindness.Domain.Models.Volunteers;
+using PawsKindness.Domain.Models.PetControl;
+using PawsKindness.Domain.Models.SpeciesControl;
 
 namespace PawsKindness.Infrastructure;
 

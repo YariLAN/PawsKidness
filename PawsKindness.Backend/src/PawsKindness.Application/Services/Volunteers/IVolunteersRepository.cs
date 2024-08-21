@@ -1,4 +1,4 @@
-﻿using PawsKindness.Domain.Models.Volunteers;
+﻿using PawsKindness.Domain.Models.PetControl;
 
 namespace PawsKindness.Application.Services.Volunteers;
 

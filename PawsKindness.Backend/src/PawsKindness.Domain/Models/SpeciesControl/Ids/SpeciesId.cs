@@ -1,4 +1,4 @@
-﻿namespace PawsKindness.Domain.Models.Species;
+﻿namespace PawsKindness.Domain.Models.SpeciesControl.Ids;
 
 public record SpeciesId
 {

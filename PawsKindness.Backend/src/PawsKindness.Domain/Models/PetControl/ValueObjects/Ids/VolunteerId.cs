@@ -1,4 +1,4 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers;
+﻿namespace PawsKindness.Domain.Models.PetControl.ValueObjects.Ids;
 
 public record VolunteerId
 {

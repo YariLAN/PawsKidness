@@ -1,8 +1,13 @@
 ﻿using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Enums;
+using PawsKindness.Domain.Models.PetControl.ValueObjects;
+using PawsKindness.Domain.Models.PetControl.ValueObjects.Ids;
+using PawsKindness.Domain.Models.PetControl.ValueObjects.Pets;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Volunteers.Pets;
+using Type = PawsKindness.Domain.Models.PetControl.ValueObjects.Pets.Type;
+
+namespace PawsKindness.Domain.Models.PetControl.Entities;
 
 public class Pet : Shared.Entity<PetId>
 {

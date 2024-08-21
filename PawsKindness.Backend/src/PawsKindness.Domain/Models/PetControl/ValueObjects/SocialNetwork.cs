@@ -1,14 +1,14 @@
 ﻿using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Volunteers;
+namespace PawsKindness.Domain.Models.PetControl.ValueObjects;
 
 public record SocialNetwork
 {
     public string Url { get; }
 
     public string Name { get; }
-    
+
     private SocialNetwork() { }
 
     private SocialNetwork(string url, string name)

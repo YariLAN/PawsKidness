@@ -1,5 +1,5 @@
 ﻿using PawsKindness.Application.Services.Volunteers;
-using PawsKindness.Domain.Models.Volunteers;
+using PawsKindness.Domain.Models.PetControl;
 
 namespace PawsKindness.Infrastructure.Repositories;
 
