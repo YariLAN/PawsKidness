@@ -21,7 +21,7 @@ public class VolunteersRepository(ApplicationDbContext context) : IVolunteersRep
     {
         var volunteer = await context.Volunteers
             .Include(v => v.Pets)
-            .ThenInclude(p => p.Photos.Where(ph => ph.IsMain))
+            .ThenInclude(p => p.Photos)
             .FirstOrDefaultAsync(v => phone == v.PhoneNumber, token);
 
         if (volunteer is null)
