@@ -1,9 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Enums;
-using PawsKindness.Domain.Models.Volunteers.Pets;
+using PawsKindness.Domain.Models.PetControl.Entities;
+using PawsKindness.Domain.Models.PetControl.ValueObjects;
+using PawsKindness.Domain.Models.PetControl.ValueObjects.Ids;
+using PawsKindness.Domain.Models.PetControl.ValueObjects.Volunteers;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Volunteers;
+namespace PawsKindness.Domain.Models.PetControl;
 
 public class Volunteer : Shared.Entity<VolunteerId>
 {
@@ -24,11 +27,11 @@ public class Volunteer : Shared.Entity<VolunteerId>
     private Volunteer(VolunteerId id) : base(id) { }
 
     private Volunteer(
-        VolunteerId id, 
-        FullName name, 
-        string description, 
-        int dateExperience, 
-        PhoneNumber phone, 
+        VolunteerId id,
+        FullName name,
+        string description,
+        int dateExperience,
+        PhoneNumber phone,
         VolunteerDetails? details = null)
         : base(id)
     {
@@ -51,10 +54,10 @@ public class Volunteer : Shared.Entity<VolunteerId>
     }
 
     public static Result<Volunteer, Error> Create(
-        VolunteerId id, 
-        FullName name, 
-        string description, 
-        int yearExperience, 
+        VolunteerId id,
+        FullName name,
+        string description,
+        int yearExperience,
         PhoneNumber phone,
         VolunteerDetails? details)
     {

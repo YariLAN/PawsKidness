@@ -1,8 +1,9 @@
 ﻿using CSharpFunctionalExtensions;
-using PawsKindness.Domain.Models.Species.Breeds;
+using PawsKindness.Domain.Models.SpeciesControl.Entities;
+using PawsKindness.Domain.Models.SpeciesControl.Ids;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Species;
+namespace PawsKindness.Domain.Models.SpeciesControl;
 
 public class Species : Shared.Entity<SpeciesId>
 {

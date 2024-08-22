@@ -1,7 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Volunteers
+namespace PawsKindness.Domain.Models.PetControl.ValueObjects
 {
     public record PhoneNumber
     {
@@ -22,5 +22,14 @@ namespace PawsKindness.Domain.Models.Volunteers
 
             return new PhoneNumber(value);
         }
+
+        public static implicit operator string(PhoneNumber value)
+        {
+            ArgumentNullException.ThrowIfNull(value);
+
+            return value.Value;
+        }
+
+        public static implicit operator PhoneNumber(string value) => new PhoneNumber(value);
     }
 }

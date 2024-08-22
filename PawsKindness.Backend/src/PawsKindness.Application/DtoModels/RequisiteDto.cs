@@ -1,3 +1,3 @@
 ﻿namespace PawsKindness.Application.DtoModels;
 
-public record RequisiteDto(string name, string description);
+public record RequisiteDto(string Name, string Description);

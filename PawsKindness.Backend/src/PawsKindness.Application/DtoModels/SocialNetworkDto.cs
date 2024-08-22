@@ -1,3 +1,3 @@
 ﻿namespace PawsKindness.Application.DtoModels;
 
-public record SocialNetworkDto(string url, string name);
+public record SocialNetworkDto(string Url, string Name);

@@ -1,7 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Volunteers.Pets;
+namespace PawsKindness.Domain.Models.PetControl.ValueObjects.Pets;
 
 public record Address
 {

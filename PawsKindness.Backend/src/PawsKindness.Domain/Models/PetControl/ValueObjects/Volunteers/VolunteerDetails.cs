@@ -1,4 +1,6 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers;
+﻿using PawsKindness.Domain.Models.PetControl.ValueObjects;
+
+namespace PawsKindness.Domain.Models.PetControl.ValueObjects.Volunteers;
 
 public record VolunteerDetails
 {
@@ -14,5 +16,12 @@ public record VolunteerDetails
     {
         Requisites = requisites.ToList();
         SocialNetworks = socialNetworks.ToList();
+    }
+
+    public static VolunteerDetails Create(
+        IEnumerable<Requisite> requisites,
+        IEnumerable<SocialNetwork> socialNetworks)
+    {
+        return new VolunteerDetails(requisites, socialNetworks);
     }
 }

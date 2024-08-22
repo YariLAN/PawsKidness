@@ -1,4 +1,4 @@
-﻿namespace PawsKindness.Domain.Models.Volunteers.Pets;
+﻿namespace PawsKindness.Domain.Models.PetControl.ValueObjects.Pets;
 
 public record PetDetails
 {

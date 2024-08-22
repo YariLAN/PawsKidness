@@ -1,7 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Shared;
 
-namespace PawsKindness.Domain.Models.Volunteers;
+namespace PawsKindness.Domain.Models.PetControl.ValueObjects;
 
 public record Requisite
 {
@@ -19,7 +19,7 @@ public record Requisite
 
     public static Result<Requisite, Error> Create(string name, string description)
     {
-        if (string.IsNullOrWhiteSpace(name)) 
+        if (string.IsNullOrWhiteSpace(name))
             return Errors.General.ValueIsEmpty(nameof(Name));
 
         if (description.Length > Constants.HIGH_TEXT_LENGTH)

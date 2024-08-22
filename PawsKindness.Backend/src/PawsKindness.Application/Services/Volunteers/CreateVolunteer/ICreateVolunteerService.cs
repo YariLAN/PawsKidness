@@ -1,6 +1,9 @@
-﻿namespace PawsKindness.Application.Services.Volunteers.CreateVolunteer;
+﻿using CSharpFunctionalExtensions;
+using PawsKindness.Domain.Shared;
+
+namespace PawsKindness.Application.Services.Volunteers.CreateVolunteer;
 
 public interface ICreateVolunteerService
 {
-    public Task<Guid?> ExecuteAsync(CreateVolunteerRequest request, CancellationToken token);
+    public Task<Result<Guid, Error>> ExecuteAsync(CreateVolunteerRequest request, CancellationToken token);
 }

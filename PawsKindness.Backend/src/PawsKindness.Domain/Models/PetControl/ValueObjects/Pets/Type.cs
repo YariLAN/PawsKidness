@@ -1,6 +1,6 @@
-﻿using PawsKindness.Domain.Models.Species;
+﻿using PawsKindness.Domain.Models.SpeciesControl.Ids;
 
-namespace PawsKindness.Domain.Models.Volunteers.Pets;
+namespace PawsKindness.Domain.Models.PetControl.ValueObjects.Pets;
 
 public record Type
 {

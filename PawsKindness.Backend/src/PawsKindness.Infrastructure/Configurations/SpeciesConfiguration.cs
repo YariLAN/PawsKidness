@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PawsKindness.Domain.Models.Species;
+using PawsKindness.Domain.Models.SpeciesControl;
+using PawsKindness.Domain.Models.SpeciesControl.Ids;
 using PawsKindness.Domain.Shared;
 
 namespace PawsKindness.Infrastructure.Configurations;
