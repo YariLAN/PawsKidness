@@ -19,9 +19,10 @@ public class VolunteersRepository(ApplicationDbContext context) : IVolunteersRep
 
     public async Task<Result<Volunteer, Error>> GetByPhoneAsync(string phone, CancellationToken token)
     {
-        var volunteer = (await context.Volunteers
-            .ToListAsync(token))
-            .FirstOrDefault(v => (string)v.PhoneNumber == phone);
+        var volunteer = await context.Volunteers
+            .Include(v => v.Pets)
+            .ThenInclude(p => p.Photos.Where(ph => ph.IsMain))
+            .FirstOrDefaultAsync(v => phone == v.PhoneNumber, token);
 
         if (volunteer is null)
             return Errors.PetControl.NotFound(phone);

@@ -4,7 +4,7 @@ using PawsKindness.Application.Services.Volunteers.CreateVolunteer;
 
 namespace PawsKindness.API.Controllers
 {
-    [Route("volunteers/")]
+    [Route("volunteers")]
     [ApiController]
     public class VolunteersController : ControllerBase
     {
