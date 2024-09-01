@@ -53,6 +53,18 @@ public class Volunteer : Shared.Entity<VolunteerId>
         _pets.Add(pet);
     }
 
+    public UnitResult<Error> AddPets(IEnumerable<Pet> pets)
+    {
+        _pets.AddRange(pets);
+
+        return Result.Success<Error>(); 
+    }
+
+    public void UpdateVolunteerDetails(VolunteerDetails details)
+    {
+        Details = details;
+    }
+
     public static Result<Volunteer, Error> Create(
         VolunteerId id,
         FullName name,

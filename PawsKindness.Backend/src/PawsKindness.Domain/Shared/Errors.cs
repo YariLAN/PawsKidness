@@ -36,9 +36,9 @@ public class Errors
             return Error.Validation("length.is.invalid", $"Invalid{forName}length");
         }
 
-        public static Error AlreadyExist()
+        public static Error AlreadyExist(string name = "")
         {
-            return Error.Validation("record.already.exist", "Value already exist");
+            return Error.Validation("record.already.exist", $"Value {name} already exist");
         }
     }
 

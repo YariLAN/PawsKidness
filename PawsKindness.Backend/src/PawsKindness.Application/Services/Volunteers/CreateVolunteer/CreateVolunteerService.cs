@@ -1,4 +1,4 @@
-﻿using CSharpFunctionalExtensions;
+using CSharpFunctionalExtensions;
 using PawsKindness.Domain.Models.PetControl;
 using PawsKindness.Domain.Models.PetControl.ValueObjects;
 using PawsKindness.Domain.Models.PetControl.ValueObjects.Ids;
@@ -21,35 +21,23 @@ public class CreateVolunteerService : ICreateVolunteerService
         var volunteer = await _volunteersRepository.GetByPhoneAsync(request.Phone, token);
 
         if (volunteer.IsSuccess)
-            return Errors.General.AlreadyExist();
+            return Errors.General.AlreadyExist(nameof(volunteer));
 
-        var name = FullName.Create(request.Surname, request.Name, request.MiddleName);
+        var name = FullName.Create(request.Surname, request.Name, request.MiddleName).Value;
 
-        if (name.IsFailure)
-            return name.Error;
+        var phone = PhoneNumber.Create(request.Phone).Value;
 
-        var phone = PhoneNumber.Create(request.Phone);
-
-        if (phone.IsFailure) 
-            return phone.Error;
-
-        var requisites = request.RequisiteDtos.ConvertAll(r => Requisite.Create(r.Name, r.Description));
-
-        if (requisites.Any(r => r.IsFailure))
-            return requisites.FirstOrDefault(x => x.IsFailure).Error;
+        var requisites = request.RequisiteDtos.Select(r => Requisite.Create(r.Name, r.Description)).Select(x => x.Value);
         
-        var socialNetworks = request.SocialNetworkDtos.ConvertAll(sn => SocialNetwork.Create(sn.Url, sn.Name));
-
-        if (socialNetworks.Any(r => r.IsFailure))
-            return socialNetworks.FirstOrDefault(x => x.IsFailure).Error;
+        var socialNetworks = request.SocialNetworkDtos.Select(sn => SocialNetwork.Create(sn.Url, sn.Name)).Select(x => x.Value);
 
         var volunteerDb = Volunteer.Create(
             VolunteerId.NewVolunteerId(),
-            name.Value,
+            name,
             request.Description,
             request.YearsExperience,
-            phone.Value,
-            VolunteerDetails.Create(requisites.Select(x => x.Value), socialNetworks.Select(x => x.Value)));
+            phone,
+            VolunteerDetails.Create(requisites, socialNetworks));
 
         if (volunteerDb.IsFailure)
             return volunteer.Error;
@@ -57,3 +45,4 @@ public class CreateVolunteerService : ICreateVolunteerService
         return await _volunteersRepository.CreateAsync(volunteerDb.Value, token);
     }
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

@@ -1,4 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PawsKindness.API.Response;
 using PawsKindness.Domain.Enums;
@@ -8,14 +9,9 @@ namespace PawsKindness.API.Extensions
 {
     public static class ResponseExtensions
     {
-        public static ActionResult<T> ToResponse<T>(this Result<T, Error> result)
+        public static ActionResult ToResponse(this Error error)
         {
-            if (result.IsSuccess)
-            {
-                return new OkObjectResult(Envelope.Ok(result.Value));
-            }
-
-            var statusCode = result.Error.Type switch
+            var statusCode = error.Type switch
             {
                 ErrorType.Validation => StatusCodes.Status400BadRequest,
                 ErrorType.Conflict => StatusCodes.Status409Conflict,
@@ -25,10 +21,18 @@ namespace PawsKindness.API.Extensions
                 _ => StatusCodes.Status500InternalServerError,
             };
 
-            return new ObjectResult(Envelope.Error(result.Error))
+            return new ObjectResult(Envelope.Error(error))
             {
                 StatusCode = statusCode,
             };
+        }
+
+        public static ActionResult<T> ToResponse<T>(this Result<T, Error> result)
+        {
+            if (result.IsFailure)
+                return result.Error.ToResponse();
+
+            return new OkObjectResult(result.Value);
         }
     }
 }
