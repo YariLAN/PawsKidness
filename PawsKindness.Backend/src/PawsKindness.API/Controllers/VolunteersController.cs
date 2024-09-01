@@ -19,7 +19,7 @@ namespace PawsKindness.API.Controllers
             [FromBody] CreateVolunteerRequest request,
             CancellationToken cancellationToken)
         {
-            var validateResult = await validator.ValidateAsync(request, opt => opt.IncludeAllRuleSets(), cancellationToken);
+            var validateResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (!validateResult.IsValid)
             {
@@ -30,7 +30,7 @@ namespace PawsKindness.API.Controllers
                     var errorDeserialize = Error.Deserialize(error.ErrorMessage);
 
                     errorResponses.Add( new(errorDeserialize.Code, errorDeserialize.Message, error.PropertyName) );
-                });
+                };
 
                 return errorResponses.ToValidationResponse();
             }

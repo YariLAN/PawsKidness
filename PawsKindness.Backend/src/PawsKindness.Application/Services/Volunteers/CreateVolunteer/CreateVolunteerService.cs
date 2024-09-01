@@ -23,7 +23,9 @@ public class CreateVolunteerService : ICreateVolunteerService
         if (volunteer.IsSuccess)
             return Errors.General.AlreadyExist(nameof(volunteer));
 
-        var name = FullName.Create(request.Surname, request.Name, request.MiddleName).Value;
+        var fullname = request.FullName;
+
+        var name = FullName.Create(fullname.Surname, fullname.Name, fullname.MiddleName).Value;
 
         var phone = PhoneNumber.Create(request.Phone).Value;
 

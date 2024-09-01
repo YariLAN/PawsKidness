@@ -14,19 +14,20 @@ public class CreateVolunteerRequestValidator : AbstractValidator<CreateVolunteer
     {
         ClassLevelCascadeMode = CascadeMode.Continue;
 
-        RuleFor(x => new { x.Surname, x.Name, x.MiddleName }).MustBeValueObject(
-            fn => FullName.Create(fn.Surname, fn.Name, fn.MiddleName));
+        RuleFor(c => c.FullName).MustBeValueObject(n => FullName.Create(n.Surname, n.Name, n.MiddleName));
 
-        RuleFor(x => x.Description).MaximumLength(Constants.HIGH_TEXT_LENGTH);
+        RuleFor(c => c.Description)
+            .MaximumLength(Constants.MIN_LOW_TEXT_LENGTH)
+            .WithError(General.ValueIsInvalidLength("Description"));
 
-        RuleFor(x => x.Phone).MustBeValueObject(PhoneNumber.Create);
+        RuleFor(c => c.Phone).MustBeValueObject(PhoneNumber.Create);
 
-        RuleFor(x => x.YearsExperience)
+        RuleFor(c => c.YearsExperience)
             .GreaterThan(0)
             .WithError(General.ValueIsInvalidLength("YearsExperience"));
 
-        RuleForEach(x => x.RequisiteDtos).MustBeValueObject(x => Requisite.Create(x.Name, x.Description));
+        RuleForEach(c => c.RequisiteDtos).MustBeValueObject(x => Requisite.Create(x.Name, x.Description));
 
-        RuleForEach(x => x.SocialNetworkDtos).MustBeValueObject(x => SocialNetwork.Create(x.Url, x.Name));
+        RuleForEach(c => c.SocialNetworkDtos).MustBeValueObject(x => SocialNetwork.Create(x.Url, x.Name));
     }
 }
