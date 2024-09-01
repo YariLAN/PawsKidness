@@ -4,6 +4,7 @@ using PawsKindness.Domain.Models.PetControl.ValueObjects;
 using PawsKindness.Domain.Models.PetControl.ValueObjects.Volunteers;
 using PawsKindness.Domain.Shared;
 using System.Reflection.Metadata;
+using static PawsKindness.Domain.Shared.Errors;
 
 namespace PawsKindness.Application.Services.Volunteers.CreateVolunteer;
 
@@ -11,7 +12,7 @@ public class CreateVolunteerRequestValidator : AbstractValidator<CreateVolunteer
 {
     public CreateVolunteerRequestValidator()
     {
-        ClassLevelCascadeMode = CascadeMode.Stop;
+        ClassLevelCascadeMode = CascadeMode.Continue;
 
         RuleSet("Name", () =>
         {
@@ -21,13 +22,12 @@ public class CreateVolunteerRequestValidator : AbstractValidator<CreateVolunteer
 
         RuleFor(x => x.Description).MaximumLength(Constants.HIGH_TEXT_LENGTH);
 
-        RuleFor(x => x.Phone).MustBeValueObject(PhoneNumber.Create);         
+        RuleFor(x => x.Phone).MustBeValueObject(PhoneNumber.Create);
 
         RuleFor(x => x.YearsExperience)
             .GreaterThan(0)
-            .LessThan(100)
-            .WithMessage("Greater than 0 or less than 100");
-        
+            .WithError(General.ValueIsInvalidLength("YearsExperience"));
+
         RuleForEach(x => x.RequisiteDtos).MustBeValueObject(x => Requisite.Create(x.Name, x.Description));
 
         RuleForEach(x => x.SocialNetworkDtos).MustBeValueObject(x => SocialNetwork.Create(x.Url, x.Name));

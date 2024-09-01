@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using PawsKindness.API.Extensions;
+using PawsKindness.API.Response;
 using PawsKindness.Application.Services.Volunteers.CreateVolunteer;
 using PawsKindness.Domain.Shared;
 
@@ -22,11 +23,16 @@ namespace PawsKindness.API.Controllers
 
             if (!validateResult.IsValid)
             {
-                var res = validateResult.Errors.First();
+                List<ResponseError> errorResponses = [];
 
-                var error = Error.Validation(res.ErrorCode, res.ErrorMessage);
+                foreach (var error in validateResult.Errors)
+                {
+                    var errorDeserialize = Error.Deserialize(error.ErrorMessage);
 
-                return error.ToResponse();
+                    errorResponses.Add( new(errorDeserialize.Code, errorDeserialize.Message, error.PropertyName) );
+                });
+
+                return errorResponses.ToValidationResponse();
             }
 
             var result = await service.ExecuteAsync(request, cancellationToken);
