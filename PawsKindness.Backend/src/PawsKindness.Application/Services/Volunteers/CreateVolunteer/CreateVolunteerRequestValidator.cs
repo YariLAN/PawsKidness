@@ -14,11 +14,8 @@ public class CreateVolunteerRequestValidator : AbstractValidator<CreateVolunteer
     {
         ClassLevelCascadeMode = CascadeMode.Continue;
 
-        RuleSet("Name", () =>
-        {
-            RuleFor(x => new { x.Surname, x.Name, x.MiddleName }).MustBeValueObject(
-                fn => FullName.Create(fn.Surname, fn.Name, fn.MiddleName));
-        });
+        RuleFor(x => new { x.Surname, x.Name, x.MiddleName }).MustBeValueObject(
+            fn => FullName.Create(fn.Surname, fn.Name, fn.MiddleName));
 
         RuleFor(x => x.Description).MaximumLength(Constants.HIGH_TEXT_LENGTH);
 
