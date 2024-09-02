@@ -19,22 +19,6 @@ namespace PawsKindness.API.Controllers
             [FromBody] CreateVolunteerRequest request,
             CancellationToken cancellationToken)
         {
-            var validateResult = await validator.ValidateAsync(request, cancellationToken);
-
-            if (!validateResult.IsValid)
-            {
-                List<ResponseError> errorResponses = [];
-
-                foreach (var error in validateResult.Errors)
-                {
-                    var errorDeserialize = Error.Deserialize(error.ErrorMessage);
-
-                    errorResponses.Add( new(errorDeserialize.Code, errorDeserialize.Message, error.PropertyName) );
-                };
-
-                return errorResponses.ToValidationResponse();
-            }
-
             var result = await service.ExecuteAsync(request, cancellationToken);
 
             return result.ToResponse();
