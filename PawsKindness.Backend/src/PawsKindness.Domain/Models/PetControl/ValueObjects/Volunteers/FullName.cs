@@ -26,6 +26,15 @@ public record FullName
         if (string.IsNullOrWhiteSpace(name))
             return Errors.General.ValueIsEmpty(nameof(Name));
 
+        if (surname.Length > Constants.LOW_TEXT_LENGTH)
+            return Errors.General.ValueIsInvalidLength(nameof(Surname)); 
+        
+        if (name.Length > Constants.LOW_TEXT_LENGTH)
+            return Errors.General.ValueIsInvalidLength(nameof(Name));  
+        
+        if (middleName.Length > Constants.LOW_TEXT_LENGTH)
+            return Errors.General.ValueIsInvalidLength(nameof(MiddleName));
+
         return new FullName(surname, name, middleName);
     }
 }

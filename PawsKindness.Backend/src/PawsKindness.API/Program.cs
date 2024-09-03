@@ -1,5 +1,8 @@
+using FluentValidation.AspNetCore;
+using PawsKindness.API.Extensions;
 using PawsKindness.Application;
 using PawsKindness.Infrastructure;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 namespace PawsKindness.API;
 
@@ -17,6 +20,11 @@ public class Program
         builder.Services
             .AddInfrastructure()
             .AddApplication();
+
+        builder.Services.AddFluentValidationAutoValidation(configuration =>
+        {
+            configuration.OverrideDefaultResultFactoryWith<CustomValidationResultFactory>();
+        });
 
         var app = builder.Build();
 

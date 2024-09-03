@@ -45,7 +45,8 @@ namespace PawsKindness.Infrastructure.Configurations
 
             builder.HasMany(x => x.Pets)
                 .WithOne()
-                .HasForeignKey("volunteer_id");
+                .HasForeignKey("volunteer_id")
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.OwnsOne(x => x.Details, x =>
             {
